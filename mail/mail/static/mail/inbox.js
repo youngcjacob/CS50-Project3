@@ -56,10 +56,14 @@ function get_emails(mailbox) {
     response.json())
 
   .then(emails => { 
-  console.log('resolved', emails);
-  emails.forEach(element => { document.querySelector('#emails-view').append(element.id);
-  document.querySelector('#emails-view').append(element.body);
-    });
+    if (mailbox === 'sent') {
+      display_sent(emails)
+    }
+    else if (mailbox === 'inbox') {
+      display_inbox(emails)
+    }
+
+    console.log('resolved', emails);
   });
 
 // for each email
@@ -71,14 +75,32 @@ function get_emails(mailbox) {
 }
 
 
-// function display_sent(emails) {}
+function display_sent(emails) {
   //have a for loop displaying all sent emails 
   //will have a hyperlink to bring user to specific email if clicking on the Id
+  
+  emails.forEach(element => { document.querySelector('#emails-view').append(element.id);
+  document.querySelector('#emails-view').append(element.body);
+    });
 
+  // document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 
-// function display_inbox(emails) {}
+}
+
+function display_inbox(emails) {
   //have a for loop displaying all received emails 
   //will have a hyperlink to bring user to specific email if clicking on the Id
+  emails.forEach(element => { document.querySelector('#emails-view').append(element.id);
+  document.querySelector('#emails-view').append(element.sender);
+  });
+  }
+
+function archived_mailbox(emails) {
+  //this will display only the emails that are archived
+  emails.forEach(element => { document.querySelector('#emails-view').append(element.id);
+  document.querySelector('#emails-view').append(element.recipient);
+  });
+}
 
 // function single_email_details(email_id) {}
   //Will need to get the contents of single email and display them  
