@@ -56,13 +56,15 @@ function get_emails(mailbox) {
     response.json())
 
   .then(emails => { 
-    if (mailbox === 'sent') {
+    if (mailbox == 'sent') {
       display_sent(emails)
     }
-    else if (mailbox === 'inbox') {
+    else if (mailbox == 'inbox') {
       display_inbox(emails)
     }
-
+    else if (mailbox == 'archive') {
+      display_archived(emails)
+    }
     console.log('resolved', emails);
   });
 
@@ -79,8 +81,9 @@ function display_sent(emails) {
   //have a for loop displaying all sent emails 
   //will have a hyperlink to bring user to specific email if clicking on the Id
   
-  emails.forEach(element => { document.querySelector('#emails-view').append(element.id);
-  document.querySelector('#emails-view').append(element.body);
+  emails.forEach(element => {
+    document.querySelector('#emails-view').append(element.id);
+    document.querySelector('#emails-view').append(element.body);
     });
 
   // document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
@@ -90,16 +93,18 @@ function display_sent(emails) {
 function display_inbox(emails) {
   //have a for loop displaying all received emails 
   //will have a hyperlink to bring user to specific email if clicking on the Id
-  emails.forEach(element => { document.querySelector('#emails-view').append(element.id);
-  document.querySelector('#emails-view').append(element.sender);
-  });
+  emails.forEach(element => {
+    document.querySelector('#emails-view').append(element.id);
+    document.querySelector('#emails-view').append(element.subject);
+    });
   }
 
-function archived_mailbox(emails) {
+function display_archived(emails) {
   //this will display only the emails that are archived
-  emails.forEach(element => { document.querySelector('#emails-view').append(element.id);
-  document.querySelector('#emails-view').append(element.recipient);
-  });
+  emails.forEach(element => {
+    document.querySelector('#emails-view').append(element.id);
+    document.querySelector('#emails-view').append(element.sender);
+    });
 }
 
 // function single_email_details(email_id) {}
@@ -139,7 +144,8 @@ function send_email() {
   })
   .then(response => response.json())
   .then(data => {
-      load_mailbox('sent');});
+      load_mailbox('sent');
+    });
   // passes the function get_emails the value of 'sent', which will render the sent emails in the webpage
     return false;
 
