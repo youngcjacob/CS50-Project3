@@ -124,7 +124,7 @@ function display_archived(emails) {
 
 //this function displays details for a single email
 function single_email_details(email_id) {
-
+  
   document.querySelector('#emails-view').innerHTML = `<h3></h3>`; //resets the page title to blank 
   const add_div = document.createElement('div');
   add_div.className = 'sent-email' //**update this to change format of single email at later point**
