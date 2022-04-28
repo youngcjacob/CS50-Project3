@@ -1,3 +1,31 @@
 textarea {
     min-height: 400px;
 }
+
+/* div.sent-email {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 120px;
+    height: 120px;
+    border: 20px solid #969696;
+    background: #d9dbda;
+    margin: 10px;
+} */
+.unread-email {
+    border: 1px solid gray;
+    padding: 5px;
+    margin: 0px;
+}
+.read-email {
+    background-color: lightgray;
+    border: 1px solid white;
+    padding: 5px;
+    margin: 0px;
+}
+.sent-email {
+    border: 1px solid gray;
+    padding: 5px;
+    margin: 0px;
+}
+
