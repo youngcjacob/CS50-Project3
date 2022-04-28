@@ -124,11 +124,9 @@ function display_archived(emails) {
 
 //this function displays details for a single email
 function single_email_details(email_id) {
-  
   document.querySelector('#emails-view').innerHTML = `<h3></h3>`; //resets the page title to blank 
   const add_div = document.createElement('div');
   add_div.className = 'sent-email' //**update this to change format of single email at later point**
-  //let user = document.getElementById('#user').value;
   let archive_button = 'Archive?';
   if (email_id.archived === true) {
     archive_button = 'Unarchive?'
@@ -139,7 +137,6 @@ function single_email_details(email_id) {
     <strong>To:</strong> ${email_id.recipients} <br>
     <strong>Subject:</strong> ${email_id.subject}  <br>
     <strong>Timestamp:</strong> ${email_id.timestamp} <br>
-    <strong>Timestamp:</strong> ${email_id.email} <br>
     <button class="btn btn-sm btn-outline-primary" id="reply">Reply</button>
     <button class="btn btn-sm btn-outline-primary" id="archive">${archive_button}</button><br>
     <hr>
